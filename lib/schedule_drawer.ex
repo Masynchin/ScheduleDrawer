@@ -116,7 +116,7 @@ defmodule ScheduleDrawer do
   defp combine_images(images) do
     width = Enum.max_by(rows, fn row -> row.width end)
 
-    height = Enum.reduce(images, 0, fn image, total -> total + image.height end)
+    height = Enum.reduce(images, fn image, total -> total + image.height end)
     combined = %Image{width: width, height: height, color: @background}
 
     images
