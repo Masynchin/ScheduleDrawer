@@ -26,9 +26,7 @@ defmodule ScheduleDrawer do
   Список с изображениями, которые
   будут объединены в одно изображение.
   """
-  defp start_draw do
-    []
-  end
+  defp start_draw, do: []
 
   @doc """
   Отрисовка заголовка расписания.
