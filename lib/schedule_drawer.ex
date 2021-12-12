@@ -139,9 +139,12 @@ defmodule ScheduleDrawer do
   нескольких изображений на другом изображении.
   """
   defp accumulate_heights(images) do
-    images
-    |> Enum.map(fn image -> image.height end)
-    |> Enum.reduce([0], fn height, [total | rest] -> [height + total, total | rest] end)
-    |> Enum.reverse()
+    accumulated_heights =
+      images
+      |> Enum.map(fn image -> image.height end)
+      |> Enum.drop(1)
+      |> Enum.scan(fn height, total -> height + total end)
+
+    [0 | accumulated_heights]
   end
 end
