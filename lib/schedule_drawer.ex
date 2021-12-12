@@ -134,8 +134,8 @@ defmodule ScheduleDrawer do
     accumulated_heights =
       images
       |> Enum.map(fn image -> image.height end)
-      |> Enum.drop(1)
       |> Enum.scan(fn height, total -> height + total end)
+      |> Enum.drop(1)
 
     [0 | accumulated_heights]
   end
