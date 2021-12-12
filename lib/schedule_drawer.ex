@@ -98,10 +98,7 @@ defmodule ScheduleDrawer do
   Добавление линий между рядами таблицы уроков.
   """
   defp add_lines(rows) do
-    line_width =
-      rows
-      |> Enum.map(fn row -> row.width end)
-      |> Enum.max()
+    line_width = Enum.max_by(rows, fn row -> row.width end)
 
     Enum.intersperse(rows, draw_line(line_width))
   end
@@ -117,10 +114,7 @@ defmodule ScheduleDrawer do
   Соединение нескольких изображений в одно.
   """
   defp combine_images(images) do
-    width =
-      rows
-      |> Enum.map(fn row -> row.width end)
-      |> Enum.max()
+    width = Enum.max_by(rows, fn row -> row.width end)
 
     height = Enum.reduce(images, 0, fn image, total -> total + image.height end)
     combined = %Image{width: width, height: height, color: @background}
